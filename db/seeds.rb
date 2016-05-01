@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+["ruby", "bash", "git"].each do |name|
+  MajorTag.create(name: name)
+  MinorTag.create(name: name)
+end
+
+Note.create(
+  title: "New Rails Repo",
+  body: "rails new app_name\ncd app_name\ngit init",
+  major_tag_id: MajorTag.where(name: "ruby").first.id
+).minor_tags << MinorTag.all
